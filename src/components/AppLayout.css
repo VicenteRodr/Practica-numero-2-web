@@ -77,6 +77,15 @@
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
+  position: relative;
+  user-select: none;
+  padding: 4px 10px;
+  border-radius: 30px;
+  transition: background-color 0.15s ease;
+}
+
+.usuario:hover {
+  background-color: rgba(46, 90, 165, 0.07);
 }
 
 .avatar {
@@ -88,6 +97,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .avatar ion-icon {
@@ -97,6 +107,141 @@
 
 .flechita {
   font-size: 16px;
+  transition: transform 0.2s ease;
+}
+
+.flechita-rotada {
+  transform: rotate(180deg);
+}
+
+/* Dropdown para alternar rol */
+.dropdown-usuario {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.05);
+  border: 1px solid #dce2ee;
+  width: 280px;
+  padding: 12px;
+  z-index: 1000;
+  cursor: default;
+  animation: fadeInDropdown 0.18s ease-out;
+}
+
+@keyframes fadeInDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-usuario-cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px 6px 8px;
+}
+
+.dropdown-usuario-etiqueta {
+  font-size: 11px;
+  font-weight: 700;
+  color: #7c889b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.dropdown-usuario-rol {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a1e24;
+}
+
+.dropdown-usuario-separador {
+  height: 1px;
+  background-color: #edf0f5;
+  margin: 6px 0;
+}
+
+.dropdown-usuario-btn-switch {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #dbe5f7;
+  background-color: #f1f5fd;
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+}
+
+.dropdown-usuario-btn-switch:hover {
+  background-color: #e2edfd;
+  transform: translateY(-1px);
+}
+
+.btn-switch-icono {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: white;
+  border: 2px solid var(--azul);
+  color: var(--azul);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.btn-switch-icono.icono-admin {
+  border-color: #8a6100;
+  color: #8a6100;
+  background-color: #fff8e6;
+}
+
+.btn-switch-textos {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.btn-switch-principal {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1c2230;
+}
+
+.btn-switch-secundario {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.dropdown-usuario-btn-logout {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #e04a3a;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background-color 0.12s ease;
+}
+
+.dropdown-usuario-btn-logout:hover {
+  background-color: #fff0f0;
 }
 
 .app-footer {

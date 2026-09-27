@@ -8,13 +8,15 @@ import MenuLateral from './components/MenuLateral'
 import IngresoReclamo from './pages/ingreso_reclamo'
 import MisSolicitudes from './pages/MisSolicitudes'
 import RevisarSolicitudes from './pages/RevisarSolicitudes'
+import { RolProvider } from './context/RolContext'
 
 setupIonicReact()
 
 function App() {
   return (
     <IonApp>
-      <IonReactRouter>
+      <RolProvider>
+        <IonReactRouter>
         {/* menu que se abre con el boton de hamburguesa en el celu */}
         <IonMenu contentId="main" type="overlay" swipeGesture={false}>
           <IonContent>
@@ -33,6 +35,7 @@ function App() {
           <Route path="/" element={<Navigate to="/login" replace />} />
         </IonRouterOutlet>
       </IonReactRouter>
+      </RolProvider>
     </IonApp>
   )
 }

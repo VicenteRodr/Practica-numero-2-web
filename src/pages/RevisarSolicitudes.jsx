@@ -1,16 +1,25 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { IonIcon } from '@ionic/react'
 import { ellipsisHorizontal, chevronDown } from 'ionicons/icons'
 import AppLayout from '../components/AppLayout'
 import EstadoBadge from '../components/EstadoBadge'
 import { solicitudesFuncionario } from '../data/datosPrueba'
+import { useRol } from '../context/RolContext'
 import './RevisarSolicitudes.css'
 
 function RevisarSolicitudes() {
+  const { esAdmin, cambiarRol } = useRol()
   const [solicitudes, setSolicitudes] = useState(solicitudesFuncionario)
   const [busqueda, setBusqueda] = useState('')
   const [filtroEstado, setFiltroEstado] = useState('')
   const [menuActivoId, setMenuActivoId] = useState(null)
+
+  // Asegura que al entrar directamente a esta pantalla estemos en modo administrador
+  useEffect(() => {
+    if (!esAdmin) {
+      cambiarRol('administrador')
+    }
+  }, [esAdmin, cambiarRol])
 
   // Filtrado reactivo por folio, ciudadano, tipo o detalle y por estado
   const solicitudesFiltradas = solicitudes.filter((item) => {

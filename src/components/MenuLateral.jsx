@@ -7,16 +7,17 @@ import {
   notificationsOutline,
   personOutline,
   helpCircleOutline,
-  logOutOutline
+  logOutOutline,
+  swapHorizontalOutline
 } from 'ionicons/icons'
 import { usuario, funcionario } from '../data/datosPrueba'
+import { useRol } from '../context/RolContext'
 import './MenuLateral.css'
 
-// opciones para vecino
+// Opciones exclusivas para vecino (ciudadano)
 const opcionesVecino = [
   { nombre: 'Inicio', icono: homeOutline, ruta: '/inicio' },
   { nombre: 'Mis solicitudes', icono: documentTextOutline, ruta: '/mis-solicitudes' },
-  { nombre: 'Revisar solicitudes', icono: documentTextOutline, ruta: '/revisar-solicitudes' },
   { nombre: 'Nueva solicitud', icono: addCircleOutline },
   { nombre: 'Ingresar reclamo', iconoCustom: '/img/alerta-usuario.svg', ruta: '/ingreso-reclamo' }, 
   { nombre: 'Notificaciones', icono: notificationsOutline, badge: usuario.notificaciones },
@@ -25,7 +26,7 @@ const opcionesVecino = [
   { nombre: 'Cerrar Sesión', icono: logOutOutline, ruta: '/login' },
 ]
 
-// opciones para funcionario (según Figma: Inicio, Revisar solicitudes, Revisar reclamo, Notificaciones, Mi Perfil, Cerrar Sesión)
+// Opciones exclusivas para funcionario (administrador) según Figma
 const opcionesFuncionario = [
   { nombre: 'Inicio', icono: homeOutline, ruta: '/inicio' },
   { nombre: 'Revisar solicitudes', icono: documentTextOutline, ruta: '/revisar-solicitudes' },
@@ -38,16 +39,30 @@ const opcionesFuncionario = [
 function MenuLateral({ tipo }) {
   const router = useIonRouter()
   const location = useLocation()
+  const { esAdmin, cambiarRol } = useRol()
 
-  const esFuncionario = tipo === 'funcionario' || location.pathname === '/revisar-solicitudes'
+  // Determina si se muestra el menú de funcionario o de vecino
+  const esFuncionario = tipo ? tipo === 'funcionario' : (esAdmin || location.pathname === '/revisar-solicitudes')
   const opciones = esFuncionario ? opcionesFuncionario : opcionesVecino
 
   const irA = (opcion) => {
-    // cierra el menu del celu (en desktop no hace nada)
+    // cierra el menu del celular
     const menu = document.querySelector('ion-menu')
     if (menu) menu.close()
     if (opcion.ruta) {
       router.push(opcion.ruta)
+    }
+  }
+
+  const alternarRol = () => {
+    const siguiente = esFuncionario ? 'vecino' : 'administrador'
+    cambiarRol(siguiente)
+    const menu = document.querySelector('ion-menu')
+    if (menu) menu.close()
+    if (siguiente === 'administrador') {
+      router.push('/revisar-solicitudes')
+    } else {
+      router.push('/inicio')
     }
   }
 
@@ -70,6 +85,14 @@ function MenuLateral({ tipo }) {
           {opcion.badge > 0 && <span className="badge">{opcion.badge}</span>}
         </button>
       ))}
+
+      {/* Switch de rol disponible en el menú (útil para móvil) */}
+      <div className="menu-switch-rol-movil">
+        <button type="button" className="btn-switch-rol-movil" onClick={alternarRol}>
+          <IonIcon icon={swapHorizontalOutline} />
+          <span>{esFuncionario ? 'Cambiar a modo Vecino' : 'Cambiar a Administrador'}</span>
+        </button>
+      </div>
     </nav>
   )
 }

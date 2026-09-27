@@ -57,3 +57,35 @@
   flex-shrink: 0;
   margin-left: auto;
 }
+
+/* Switch de rol para móvil / drawer */
+.menu-switch-rol-movil {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px dashed #d5dbe5;
+}
+
+.btn-switch-rol-movil {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background-color: #f1f5fd;
+  border: 1.5px solid #bfd3fb;
+  border-radius: 12px;
+  color: var(--azul);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-switch-rol-movil:hover {
+  background-color: #e2edfd;
+}
+
+.btn-switch-rol-movil ion-icon {
+  font-size: 20px;
+}
