@@ -9,13 +9,14 @@ import {
   helpCircleOutline,
   logOutOutline
 } from 'ionicons/icons'
-import { usuario } from '../data/datosPrueba'
+import { usuario, funcionario } from '../data/datosPrueba'
 import './MenuLateral.css'
 
-// las que no tienen ruta es porque todavia no hacemos esa pagina
-const opciones = [
+// opciones para vecino
+const opcionesVecino = [
   { nombre: 'Inicio', icono: homeOutline, ruta: '/inicio' },
   { nombre: 'Mis solicitudes', icono: documentTextOutline, ruta: '/mis-solicitudes' },
+  { nombre: 'Revisar solicitudes', icono: documentTextOutline, ruta: '/revisar-solicitudes' },
   { nombre: 'Nueva solicitud', icono: addCircleOutline },
   { nombre: 'Ingresar reclamo', iconoCustom: '/img/alerta-usuario.svg', ruta: '/ingreso-reclamo' }, 
   { nombre: 'Notificaciones', icono: notificationsOutline, badge: usuario.notificaciones },
@@ -24,9 +25,22 @@ const opciones = [
   { nombre: 'Cerrar Sesión', icono: logOutOutline, ruta: '/login' },
 ]
 
-function MenuLateral() {
+// opciones para funcionario (según Figma: Inicio, Revisar solicitudes, Revisar reclamo, Notificaciones, Mi Perfil, Cerrar Sesión)
+const opcionesFuncionario = [
+  { nombre: 'Inicio', icono: homeOutline, ruta: '/inicio' },
+  { nombre: 'Revisar solicitudes', icono: documentTextOutline, ruta: '/revisar-solicitudes' },
+  { nombre: 'Revisar reclamo', iconoCustom: '/img/alerta-usuario.svg', ruta: '/ingreso-reclamo' },
+  { nombre: 'Notificaciones', icono: notificationsOutline, badge: funcionario.notificaciones },
+  { nombre: 'Mi Perfil', icono: personOutline },
+  { nombre: 'Cerrar Sesión', icono: logOutOutline, ruta: '/login' },
+]
+
+function MenuLateral({ tipo }) {
   const router = useIonRouter()
   const location = useLocation()
+
+  const esFuncionario = tipo === 'funcionario' || location.pathname === '/revisar-solicitudes'
+  const opciones = esFuncionario ? opcionesFuncionario : opcionesVecino
 
   const irA = (opcion) => {
     // cierra el menu del celu (en desktop no hace nada)

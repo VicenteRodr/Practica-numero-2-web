@@ -46,3 +46,39 @@ export const misSolicitudes = [
   { id: 6, folio: '#AAABBB123', fecha: '13/09/2026', tipo: 'Permisos', descripcion: 'Permisos...', estado: 'Rechazado' },
 ]
 
+export const funcionario = {
+  nombre: 'Administrador',
+  notificaciones: 3,
+}
+
+export const solicitudesFuncionario = [
+  {
+    id: 1,
+    folio: '#AAABBB123',
+    fecha: '13/09/2026',
+    ciudadano: 'Ana Paula',
+    tipo: 'Alumbrado',
+    detalle: 'Foco apagado ...',
+    estado: 'En revisión',
+  },
+  {
+    id: 2,
+    folio: '#AAABBB124',
+    fecha: '13/09/2026',
+    ciudadano: 'Juan Pérez',
+    tipo: 'Alumbrado',
+    detalle: 'Foco apagado ...',
+    estado: 'En revisión',
+  },
+  {
+    id: 3,
+    folio: '#AAABBB125',
+    fecha: '13/09/2026',
+    ciudadano: 'Daniel carvajal',
+    tipo: 'Alumbrado',
+    detalle: 'Foco apagado ...',
+    estado: 'En revisión',
+  },
+]
+
+

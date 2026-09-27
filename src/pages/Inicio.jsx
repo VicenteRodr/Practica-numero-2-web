@@ -22,7 +22,7 @@ function Inicio() {
             <span>|</span>
             <a href="#" onClick={(e) => { e.preventDefault(); router.push('/mis-solicitudes'); }}>Consulta el estado de tus trámites</a>
             <span>|</span>
-            <a href="#" onClick={(e) => { e.preventDefault(); }}>Recibe notificaciones de avance</a>
+            <a href="#" onClick={(e) => { e.preventDefault(); router.push('/revisar-solicitudes'); }}>Panel funcionario</a>
           </div>
         </div>
         <img src="/img/playa.png" alt="Costa de Santo Domingo" />
